@@ -1,0 +1,148 @@
+{
+  "name": "tabbrowserview",
+  "productName": "TabBrowserView",
+  "version": "1.0.0",
+  "description": "TabBrowserView",
+  "main": ".webpack/main",
+  "scripts": {
+    "start": "electron-forge start --inspect-electron",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "eslint --ext .ts,.tsx ."
+  },
+  "keywords": [],
+  "author": "raphy",
+  "license": "UNLICENSED",
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "executableName": "tabbrowserview"
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "forgetypescriptreactwebpack"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {
+            "maintainer": "Raphael Stonehorse"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip"
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ],
+      "plugins": [
+        [
+          "@electron-forge/plugin-webpack",
+          {
+            "mainConfig": "./webpack.main.config.js",
+            "renderer": {
+              "config": "./webpack.renderer.config.js",
+              "entryPoints": [
+                {
+                  "html": "./src/app/index.html",
+                  "js": "./src/app/renderer.ts",
+                  "preload": {
+                    "js": "./src/main/preload/preload.ts"
+                  },
+                  "name": "main_window"
+                }
+              ]
+            }
+          }
+        ]
+      ]
+    }
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.2",
+    "@babel/plugin-syntax-top-level-await": "^7.14.5",
+    "@babel/plugin-transform-modules-commonjs": "^7.18.2",
+    "@babel/preset-env": "^7.18.2",
+    "@babel/preset-react": "^7.17.12",
+    "@babel/preset-typescript": "^7.17.12",
+    "@electron-forge/cli": "^6.0.0-beta.63",
+    "@electron-forge/maker-deb": "^6.0.0-beta.63",
+    "@electron-forge/maker-flatpak": "^6.0.0-beta.63",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.63",
+    "@electron-forge/maker-snap": "^6.0.0-beta.63",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.63",
+    "@electron-forge/maker-zip": "^6.0.0-beta.63",
+    "@electron-forge/plugin-electronegativity": "^6.0.0-beta.63",
+    "@electron-forge/plugin-webpack": "6.0.0-beta.63",
+    "@tailwindcss/forms": "^0.5.2",
+    "@types/better-sqlite3": "^7.5.0",
+    "@types/chrome": "^0.0.190",
+    "@types/lodash": "^4.14.182",
+    "@types/papaparse": "^5.3.2",
+    "@types/react": "^18.0.9",
+    "@types/react-dom": "^18.0.5",
+    "@types/react-router-dom": "^5.3.3",
+    "@types/styled-components": "^5.1.25",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "@vercel/webpack-asset-relocator-loader": "1.7.0",
+    "babel-loader": "^8.2.5",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^6.7.1",
+    "electron": "^17.2.0",
+    "electron-extensions": "^7.0.0-beta.3",
+    "eslint": "^8.0.1",
+    "eslint-plugin-import": "^2.25.0",
+    "fork-ts-checker-webpack-plugin": "^7.2.11",
+    "node-loader": "^2.0.0",
+    "postcss": "^8.4.14",
+    "postcss-loader": "^7.0.0",
+    "style-loader": "^3.3.1",
+    "tailwindcss": "^3.1.2",
+    "ts-loader": "^9.3.0",
+    "typescript": "~4.5.4"
+  },
+  "dependencies": {
+    "@zendeskgarden/react-tabs": "^8.53.0",
+    "@zendeskgarden/react-theming": "^8.53.0",
+    "assert": "^2.0.0",
+    "better-sqlite3": "^7.5.3",
+    "better-sqlite3-multiple-ciphers": "^7.5.2",
+    "buffer": "^6.0.3",
+    "classnames": "^2.3.1",
+    "electron-log": "^4.4.7",
+    "electron-squirrel-startup": "^1.0.0",
+    "https-browserify": "^1.0.0",
+    "lodash": "^4.17.21",
+    "node-ipc": "10",
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1",
+    "react": "^18.1.0",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
+    "react-dom": "^18.1.0",
+    "react-dropzone": "^14.2.1",
+    "react-headless-tabs": "^5.1.1",
+    "react-icons": "^4.4.0",
+    "react-router-dom": "^6.3.0",
+    "react-select": "^5.3.2",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
+    "styled-components": "^5.3.5",
+    "url": "^0.11.0",
+    "util": "^0.12.4",
+    "uuid": "^8.3.2"
+  }
+}
